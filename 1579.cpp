@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxNumEdgesToRemove(int n, vector<vector<int>>& edges) {
-        vector<int> t_three_parents(n + 1);
+        vector<int> t_three_parents(n + 1); 
         for(int i = 0;i <= n;++i)
             t_three_parents[i] = i;
         sort(edges.begin(), edges.end());

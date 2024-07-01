@@ -3,7 +3,7 @@ public:
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
         vector<bool> edge_cnt(n, false);
         vector<vector<int>> adjlist(n, vector<int>());
-        for(auto &edge : edges){
+        for(auto &edge : edges){ 
             adjlist[edge[1]].push_back(edge[0]);
             edge_cnt[edge[0]] = true;
         }

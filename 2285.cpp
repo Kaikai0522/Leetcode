@@ -3,7 +3,7 @@ public:
     long long maximumImportance(int n, vector<vector<int>>& roads) {
         vector<int> connect_cnt(n, 0);
         for(auto &road : roads){
-            ++connect_cnt[road[0]];
+            ++connect_cnt[road[0]]; 
             ++connect_cnt[road[1]];
         }
         sort(connect_cnt.begin(), connect_cnt.end());

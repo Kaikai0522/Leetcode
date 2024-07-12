@@ -2,27 +2,31 @@ class Solution {
 public:
     int maximumGain(string s, int x, int y) {
         const int n = s.size();
-        char first_c = 'a', second_c = 'b';
-        if(y > x){
-            swap(first_c, second_c);
+        char first_c, second_c;
+        if(x > y)
+            first_c = 'a', second_c = 'b';
+        else{
+            first_c = 'b', second_c = 'a';
             swap(x, y);
         }
-        int ans = 0;
-        for(int i = 0;i < n - 1;++i){
-            if(s[i] == first_c && s[i + 1] == second_c){
-                ans += x;
-                s.erase(i, 2);
-                i = max(-1, i - 2);
+        int ans = 0, first_cnt = 0, second_cnt = 0;
+        for(int i = 0;i < n;++i){
+            if(s[i] == first_c)
+                ++first_cnt;
+            else if(s[i] == second_c){
+                if(first_cnt > 0){
+                    ans += x;
+                    --first_cnt;
+                }
+                else
+                    ++second_cnt;
+            }
+            else{
+                ans += y * min(first_cnt, second_cnt);
+                second_cnt = first_cnt = 0;
             }
         }
-        for(int i = 0;i < n - 1;++i){
-            if(s[i] == second_c && s[i + 1] == first_c){
-                ans += y;
-                s.erase(i, 2);
-                i = max(-1, i - 2);
-            }
-        }
-        cout << s;
+        ans += y * min(first_cnt, second_cnt);
         return ans;
     }
 };
